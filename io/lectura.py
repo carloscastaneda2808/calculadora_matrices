@@ -2,19 +2,9 @@ import os
 from pathlib import Path
 
 def read_file():
-    archivo2 = Path(__file__).parent / ".." / "resources" / "matrices" / "matriz.txt"
-    
-    try:
-        readfile = open(archivo2.resolve(), "r")
+    archivo = Path(__file__).parent / ".." / "resources" / "matrices" / "matriz.txt"
 
-        # lo que tengas que hacer con el archivo
-        readfile.readlines()
-
-    finally:
-        #    hay que cerrar
-        readfile.close()
-
-    with open(archivo2.resolve(), "r") as file:
+    with open(archivo.resolve(), "r") as file:
         print(file.readlines())
 
 if __name__ == "__main__":
