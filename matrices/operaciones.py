@@ -77,7 +77,7 @@ def sarrus(A):
 
     return Matriz(values)
 
-def det(A):
+def det_3x3(A):
     if A.rows != A.cols:
         raise ValueError(f"La matriz debe ser cuadrada.")
     
@@ -90,8 +90,46 @@ def det(A):
             mul *= B[0 + j][i + j]
         suma += mul
 
-    return suma
+    resta = 0
+    for i in range(B.cols - 1, A.cols - 2, -1):
+        mul = 1
+        for j in range(B.rows):
+            mul *= B[0 + j][i - j]
+        resta -= mul
+
+    return suma + resta
+
+def cortar(A):
+    matrices = []
+    for i in range(A.cols):
+        values = []
+        for j in range(A.rows):
+            row = []
+            for k in range(A.cols):
+                if 0 != j and i != k:
+                    row.append(A[j][k])
+            
+            if len(row) != 0:
+                values.append(row)
+
+        matrices.append(Matriz(values))
+    return matrices
+
+def det(A):
+    if A.rows != A.cols:
+        raise ValueError(f"La matriz debe ser cuadrada.")
+    if A.rows > 2:
+        matrices = cortar(A)
+    if A.rows == 2:
+        return det_2x2(A)
+    if A.rows == 1:
+        return A.values
     
+    suma = 0
+    for i in range(A.cols):
+        suma += (-1)**(i + 2) * A[0][i] * det(matrices[i])
+    return suma
+
 def transpuesta(A):
     values = []
 
@@ -103,8 +141,12 @@ def transpuesta(A):
 
     return Matriz(values)
 
+A = Matriz([[3, 1, 2],
+            [2, 1, 1],
+            [1, 0, 1]])
 
+B = Matriz([[7, 8], 
+            [9, 10], 
+            [11, 12]])
 
-A = Matriz([[1, 2, 3], [4, 5, 6], [7 ,8 ,9]])
-B = Matriz([[7, 8], [9, 10], [11, 12]])
 print(det(A))
