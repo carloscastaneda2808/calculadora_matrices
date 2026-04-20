@@ -1,4 +1,4 @@
-from matriz import Matriz
+from calculadora_matrices.matrices.matriz import Matriz
 
 # Suma y resta
 def suma(A, B):
@@ -31,12 +31,14 @@ def resta(A, B):
 
 # Multiplicacion por escalar
 def mult_escalar(A, escalar):
+    if escalar.rows != 1 or escalar.cols != 1:
+        raise ValueError(f"El escalar no es 1x1")
     values = []
 
     for i in range(A.rows):
         row = []
         for j in range(A.cols):
-            row.append(A[i][j] * escalar)
+            row.append(A[i][j] * escalar[0][0])
         values.append(row)
 
     return Matriz(values)

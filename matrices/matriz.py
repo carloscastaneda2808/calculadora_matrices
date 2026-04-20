@@ -55,7 +55,7 @@ class Matriz:
                 self_as_str = self_as_str[0 : -2]
             self_as_str += "]\n"
 
-        if self_as_str.endswith('\n'):
-                self_as_str = self_as_str[0 : -1]
+        #if self_as_str.endswith('\n'):
+        #        self_as_str = self_as_str[0 : -1]
 
         return self_as_str
