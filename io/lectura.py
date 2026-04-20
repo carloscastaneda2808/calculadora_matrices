@@ -14,7 +14,7 @@ def read_file():
 
         for linea in lineas:
             if linea.strip() == "":
-                # línea vacía → guardar matriz actual
+                # Si es una linea vacia entonces se guarda como una matriz
                 if values:
                     matrices.append(Matriz(values))
                     values = []
@@ -37,7 +37,9 @@ def read_file():
 
     return matrices
 
-if __name__ == "__main__":
+def ver_matrices():
+    print("Estas son las matrices guardadas")
     matrices = read_file()
-    for matriz in matrices:
-        print(matriz)
+    for i in range(len(matrices)):
+        print(f"Matriz numero {i + 1}")
+        print(matrices[i])

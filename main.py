@@ -1,6 +1,6 @@
-from calculadora_matrices.io.input_validation import guardar_matriz, ver_matrices, elegir
+from calculadora_matrices.io.input_validation import guardar_matriz, elegir, guardar_resultado
 from calculadora_matrices.matrices.operaciones import suma, resta, mult_escalar, mult_matrices, inversa, transpuesta, resolver_sistema
-from calculadora_matrices.io.lectura import read_file
+from calculadora_matrices.io.lectura import read_file, ver_matrices
 
 if __name__ == "__main__":
     while True:
@@ -43,8 +43,11 @@ if __name__ == "__main__":
             B = elegir("la segunda matriz", len(matrices))
 
             try:
-                C = suma(matrices[A - 1], matrices[B - 1])
-                print(C)
+                resultado = suma(matrices[A - 1], matrices[B - 1])
+                print("\nResultado:")
+                print(resultado)
+                guardar_resultado(resultado)
+
             except ValueError as e:
                 print("Error:", e)
 
@@ -56,7 +59,11 @@ if __name__ == "__main__":
             B = elegir("la segunda matriz", len(matrices))
 
             try:
-                print(resta(matrices[A - 1], matrices[B - 1]))
+                resultado = resta(matrices[A - 1], matrices[B - 1])
+                print("\nResultado:")
+                print(resultado)
+                guardar_resultado(resultado)
+
             except ValueError as e:
                 print("Error:", e)
 
@@ -68,7 +75,11 @@ if __name__ == "__main__":
             x = elegir("el escalar", len(matrices))
 
             try:
-                print(mult_escalar(matrices[A - 1], matrices[x - 1]))
+                resultado = mult_escalar(matrices[A - 1], matrices[x - 1])
+                print("\nResultado:")
+                print(resultado)
+                guardar_resultado(resultado)
+
             except ValueError as e:
                 print("Error:", e)
 
@@ -80,7 +91,11 @@ if __name__ == "__main__":
             B = elegir("la segunda matriz", len(matrices))
 
             try:
-                print(mult_matrices(matrices[A - 1], matrices[B - 1]))
+                resultado = mult_matrices(matrices[A - 1], matrices[B - 1])
+                print("\nResultado:")
+                print(resultado)
+                guardar_resultado(resultado)
+
             except ValueError as e:
                 print("Error:", e)
 
@@ -91,7 +106,11 @@ if __name__ == "__main__":
             A = elegir("la matriz", len(matrices))
 
             try:
-                print(inversa(matrices[A - 1]))
+                resultado = inversa(matrices[A - 1])
+                print("\nResultado:")
+                print(resultado)
+                guardar_resultado(resultado)
+
             except ValueError as e:
                 print("Error:", e)
 
@@ -111,7 +130,11 @@ if __name__ == "__main__":
             b = elegir("el vector b", len(matrices))
 
             try:
-                print(resolver_sistema(matrices[A - 1], matrices[b - 1]))
+                resultado = resolver_sistema(matrices[A - 1], matrices[b - 1])
+                print("\nResultado:")
+                print(resultado)
+                guardar_resultado(resultado)
+
             except ValueError as e:
                 print("Error:", e)
             
