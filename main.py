@@ -1,6 +1,6 @@
 from calculadora_matrices.io.input_validation import guardar_matriz, elegir, guardar_resultado
 from calculadora_matrices.matrices.operaciones import suma, resta, mult_escalar, mult_matrices, inversa, transpuesta, resolver_sistema
-from calculadora_matrices.io.lectura import read_file, ver_matrices
+from calculadora_matrices.io.lectura import ver_matrices, abrir_matrices
 
 if __name__ == "__main__":
     while True:
@@ -38,7 +38,7 @@ if __name__ == "__main__":
         # SUMA
         elif opcion == 3:
             print("\n===== Suma =====")
-            matrices = read_file()
+            matrices = abrir_matrices()
             A = elegir("la primera matriz", len(matrices))
             B = elegir("la segunda matriz", len(matrices))
 
@@ -54,7 +54,7 @@ if __name__ == "__main__":
         # RESTA
         elif opcion == 4:
             print("\n===== Resta =====")
-            matrices = read_file()
+            matrices = abrir_matrices()
             A = elegir("la primera matriz", len(matrices))
             B = elegir("la segunda matriz", len(matrices))
 
@@ -70,7 +70,7 @@ if __name__ == "__main__":
         # MULTIPLICACION POR ESCALAR
         elif opcion == 5:
             print("\n===== Multiplicacion por Escalar =====")
-            matrices = read_file()
+            matrices = abrir_matrices()
             A = elegir("la matriz", len(matrices))
             x = elegir("el escalar", len(matrices))
 
@@ -86,7 +86,7 @@ if __name__ == "__main__":
         # MULTIPLICACION DE MATRICES
         elif opcion == 6:
             print("\n===== Multiplicacion de Matrices =====")
-            matrices = read_file()
+            matrices = abrir_matrices()
             A = elegir("la primera matriz", len(matrices))
             B = elegir("la segunda matriz", len(matrices))
 
@@ -102,7 +102,7 @@ if __name__ == "__main__":
         # MATRIZ INVERSA
         elif opcion == 7:
             print("\n===== Matriz Inversa =====")
-            matrices = read_file()
+            matrices = abrir_matrices()
             A = elegir("la matriz", len(matrices))
 
             try:
@@ -117,15 +117,22 @@ if __name__ == "__main__":
         # MATRIZ TRANSPUESTA
         elif opcion == 8:
             print("\n===== Matriz Transpuesta =====")
-            matrices = read_file()
+            matrices = abrir_matrices()
             A = elegir("la matriz", len(matrices))
 
-            print(transpuesta(matrices[A - 1]))
+            try:
+                resultado = transpuesta(matrices[A - 1])
+                print("\nResultado:")
+                print(resultado)
+                guardar_resultado(resultado)
+
+            except ValueError as e:
+                print("Error:", e)
 
         # SISTEMA Ax = b
         elif opcion == 9:
             print("\n===== Solucion de un Sistema =====")
-            matrices = read_file()
+            matrices = abrir_matrices()
             A = elegir("la matriz A", len(matrices))
             b = elegir("el vector b", len(matrices))
 

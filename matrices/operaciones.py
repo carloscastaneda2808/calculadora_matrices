@@ -62,26 +62,15 @@ def mult_matrices(A, B):
     return Matriz(values)
 
 # Inversa
-def det_2x2(A):
-    if A.rows!= 2 and A.cols != 2:
-        raise ValueError(f"Las columnas y filas de la matriz deben ser 2.")
-    
-    return A[0][0] * A[1][1] - A[1][0] * A[0][1]
-
-def det(A):
+def inversa(A):
     if A.rows != A.cols:
         raise ValueError(f"La matriz debe ser cuadrada.")
-    if A.rows > 2:
-        matrices = Matriz(A.cortar(1))
-    if A.rows == 2:
-        return det_2x2(A)
-    if A.rows == 1:
-        return A.values
     
-    suma = 0
-    for i in range(A.cols):
-        suma += (-1)**(i + 2) * A[0][i] * det(Matriz(matrices[0][i]))
-    return suma
+    d = det(A)
+    if d == 0:
+        raise ValueError("La matriz no tiene inversa porque el determinante es 0.")
+    
+    return mult_escalar(adjunta(A), Matriz([[1/d]]))
 
 def adjunta(A):
     if A.rows != A.cols:
@@ -100,15 +89,26 @@ def adjunta(A):
 
     return transpuesta(Matriz(values))
 
-def inversa(A):
+def det(A):
     if A.rows != A.cols:
         raise ValueError(f"La matriz debe ser cuadrada.")
+    if A.rows > 2:
+        matrices = Matriz(A.cortar(1))
+    if A.rows == 2:
+        return det_2x2(A)
+    if A.rows == 1:
+        return A.values
     
-    d = det(A)
-    if d == 0:
-        raise ValueError("La matriz no tiene inversa porque el determinante es 0.")
+    suma = 0
+    for i in range(A.cols):
+        suma += (-1)**(i + 2) * A[0][i] * det(Matriz(matrices[0][i]))
+    return suma
+
+def det_2x2(A):
+    if A.rows!= 2 and A.cols != 2:
+        raise ValueError(f"Las columnas y filas de la matriz deben ser 2.")
     
-    return mult_escalar(adjunta(A), 1 / d)
+    return A[0][0] * A[1][1] - A[1][0] * A[0][1]
 
 # Matriz transpuesta
 def transpuesta(A):

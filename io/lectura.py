@@ -1,12 +1,11 @@
 from pathlib import Path
 from calculadora_matrices.matrices.matriz import Matriz
 
-# python -m calculadora_matrices.io.lectura
+# Lee las lineas de un archivo
+def read_file(ruta_archivo):
+    ruta = Path(ruta_archivo)
 
-def read_file():
-    archivo = Path(__file__).parent / ".." / "resources" / "matrices" / "matriz.txt"
-
-    with open(archivo.resolve(), "r") as file:
+    with open(ruta, "r") as file:
         lineas = file.readlines()
 
         matrices = []
@@ -14,7 +13,6 @@ def read_file():
 
         for linea in lineas:
             if linea.strip() == "":
-                # Si es una linea vacia entonces se guarda como una matriz
                 if values:
                     matrices.append(Matriz(values))
                     values = []
@@ -31,15 +29,40 @@ def read_file():
 
             values.append(row)
 
-        # guardar la última matriz (si no termina en línea vacía)
         if values:
             matrices.append(Matriz(values))
+    
+    # Se regresa como una lista de matrices
+    return matrices
+
+# Valida la ruta seleccionada
+def validar_ruta_lectura():
+    while True:
+        ruta = Path(input("Ingresa la ruta del archivo a seleccionar: ").strip())
+
+        if not ruta.exists():
+            print("Error: el archivo no existe")
+            continue
+
+        if ruta.suffix.lower() != ".txt":
+            print("Error: el archivo debe ser .txt")
+            continue
+
+        return ruta
+    
+def abrir_matrices():
+    ruta = validar_ruta_lectura()
+    matrices = read_file(ruta)
 
     return matrices
 
+# Escribe las matrices
 def ver_matrices():
-    print("Estas son las matrices guardadas")
-    matrices = read_file()
+    ruta = validar_ruta_lectura()
+    matrices = read_file(ruta)
+
+    print("Estas son las matrices guardadas:\n")
+
     for i in range(len(matrices)):
         print(f"Matriz numero {i + 1}")
         print(matrices[i])
