@@ -88,6 +88,7 @@ def adjunta(A):
         # Matriz de listas
         matrices = Matriz(A.cortar(A.cols))
 
+    # Saca el cofactor de cada elemento
     values = []
     for i in range(A.rows):
         row = []
@@ -119,16 +120,18 @@ def transpuesta(A):
 
     return Matriz(values)
 
-# Ejemplos de matrices
-A = Matriz([[1, 2, 3],
-            [4, 5, 6],
-            [7, 8, 9]])
-
-B = Matriz([[2, 0, 0, 0], [0, 4, 0, 0], [0, 0, 5, 0], [0, 0, 0, 10]])
-
-C = Matriz((["a", "b", "c", "d"],
-            ["e", "f", "g", "h"],
-            ["i", "j", "k", "l"],
-            ["m", "n", "o", "p"]))
-
-print(mult_matrices(inversa(B), B))
+def resolver_sistema(A, b):
+    if A.rows != A.cols:
+        raise ValueError("La matriz A debe ser cuadrada.")
+    
+    if A.rows != b.rows or b.cols != 1:
+        raise ValueError("b debe ser un vector columna con el mismo número de filas que A.")
+    
+    # Verifica que tenga inversa
+    if det(A) == 0:
+        raise ValueError("El sistema no tiene solución única (determinante = 0).")
+    
+    # x = A^-1 * b
+    x = mult_matrices(inversa(A), b)
+    
+    return x

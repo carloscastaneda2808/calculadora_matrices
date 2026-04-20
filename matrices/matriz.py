@@ -1,3 +1,4 @@
+from fractions import Fraction
 
 class Matriz:
     def __init__(self, values):
@@ -42,30 +43,13 @@ class Matriz:
         # Las matrices se devuelven como una lista de listas
         return values2
         
-    def __setitem__(self, idx, row):
-        if idx < 0 or idx >= self.rows:
-            raise IndexError(f"Indice para fila fuera de rango! ({idx})")
-        
-        if len(row) != self.cols:
-            raise ValueError(f"La longitud de la fila esta fuera de rango!")
-
-        self.values[idx] = row
-
-    def set_item(self, col_idx, row_idx, item):
-        if col_idx < 0 or col_idx >= self.cols:
-            raise IndexError(f"Indice para columna fuera de rango! ({col_idx})")
-        if row_idx < 0 or row_idx >= self.rows:
-            raise IndexError(f"Indice para fila fuera de rango! ({row_idx})")
-        
-        self.values[row_idx][col_idx] = item
-
     def __str__(self):
         self_as_str = ""
 
         for i in range(self.rows):
             self_as_str += "["
             for j in range(self.cols):
-                self_as_str += f"{self[i][j]}, "
+                self_as_str += f"{Fraction(self[i][j]).limit_denominator(10):>5}, "
 
             if self_as_str.endswith(', '):
                 self_as_str = self_as_str[0 : -2]
