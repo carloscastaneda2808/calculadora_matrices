@@ -43,7 +43,7 @@ def guardar_resultado(resultado):
         except Exception as e:
             print("Error al guardar:", e)
 
-# Valida la ruta seleccionada
+# Válida la ruta seleccionada
 def validar_ruta_guardado():
     entrada = input("Ingresa la ruta donde guardar: ").strip()
 

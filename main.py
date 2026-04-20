@@ -9,11 +9,11 @@ if __name__ == "__main__":
         print("2) Ver matrices guardadas")
         print("3) Suma")
         print("4) Resta")
-        print("5) Multiplicacion por ecalar")
-        print("6) Multiplicacion de matrices")
+        print("5) Multiplicación por ecalar")
+        print("6) Multiplicación de matrices")
         print("7) Matriz inversa")
         print("8) Matriz transpuesta")
-        print("9) Solucion de un sistema")
+        print("9) Solución de un sistema")
         print("0) Salir")
 
         while True:
@@ -69,7 +69,7 @@ if __name__ == "__main__":
 
         # MULTIPLICACION POR ESCALAR
         elif opcion == 5:
-            print("\n===== Multiplicacion por Escalar =====")
+            print("\n===== Multiplicación por Escalar =====")
             matrices = abrir_matrices()
             A = elegir("la matriz", len(matrices))
             x = elegir("el escalar", len(matrices))
@@ -85,7 +85,7 @@ if __name__ == "__main__":
 
         # MULTIPLICACION DE MATRICES
         elif opcion == 6:
-            print("\n===== Multiplicacion de Matrices =====")
+            print("\n===== Multiplicación de Matrices =====")
             matrices = abrir_matrices()
             A = elegir("la primera matriz", len(matrices))
             B = elegir("la segunda matriz", len(matrices))
@@ -129,9 +129,9 @@ if __name__ == "__main__":
             except ValueError as e:
                 print("Error:", e)
 
-        # SISTEMA Ax = b
+        # SOLUCIÓN DE UN SISTEMA
         elif opcion == 9:
-            print("\n===== Solucion de un Sistema =====")
+            print("\n===== Solución de un Sistema =====")
             matrices = abrir_matrices()
             A = elegir("la matriz A", len(matrices))
             b = elegir("el vector b", len(matrices))

@@ -35,7 +35,7 @@ def read_file(ruta_archivo):
     # Se regresa como una lista de matrices
     return matrices
 
-# Valida la ruta seleccionada
+# Válida la ruta seleccionada
 def validar_ruta_lectura():
     while True:
         ruta = Path(input("Ingresa la ruta del archivo a seleccionar: ").strip())

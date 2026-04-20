@@ -29,7 +29,7 @@ def resta(A, B):
 
     return Matriz(values)
 
-# Multiplicacion por escalar
+# Multiplicación por escalar
 def mult_escalar(A, escalar):
     if escalar.rows != 1 or escalar.cols != 1:
         raise ValueError(f"El escalar no es 1x1")
@@ -43,7 +43,7 @@ def mult_escalar(A, escalar):
 
     return Matriz(values)
 
-# Multiplicacion de matrices
+# Multiplicación de matrices
 def mult_matrices(A, B):
     if A.cols != B.rows:
         raise ValueError(f"Las columnas de la matriz deben ser iguales a las filas de B.")
@@ -122,6 +122,7 @@ def transpuesta(A):
 
     return Matriz(values)
 
+# Solución de un sistema
 def resolver_sistema(A, b):
     if A.rows != A.cols:
         raise ValueError("La matriz A debe ser cuadrada.")
