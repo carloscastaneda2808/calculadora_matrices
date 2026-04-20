@@ -22,6 +22,25 @@ class Matriz:
             raise IndexError(f"Indice para fila fuera de rango! ({idx})")
         
         return self.values[idx]
+    
+    def cortar(self, nivel_row):
+        values2 = []
+        for i in range(nivel_row):
+            row2 = []
+            for j in range(self.cols):
+                values = []
+                for k in range(self.rows):
+                    row = []
+                    for l in range(self.cols):
+                        if i != k and j != l:
+                            row.append(self[k][l])
+                    if len(row) != 0:
+                        values.append(row)
+                row2.append(values)
+            values2.append(row2)
+
+        # Las matrices se devuelven como una lista de listas
+        return values2
         
     def __setitem__(self, idx, row):
         if idx < 0 or idx >= self.rows:
